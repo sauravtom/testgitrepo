@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block css %}
+<style type="text/css">
+	.media_img{
+		max-width:100%;
+		max-height:100%;
+		vertical-align: middle;
+		//padding: 5px;
+		border: 1px grey;
+	}
+	.img_column{
+		padding-right:5px;
+	}
+</style>
+{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+	
+	{% for i in data %}
+		<a href='{{i['link']}}'>
+			<div class='item'>
+				<p class='source'>&nbsp; {{i['source']}}</p>
+				<table>
+					<tr>
+						<td class='img_column'>
+							<img src="{{i['image']}}" class='media_img'>
+						</td>
+						<td valign="top">
+							<p class='title'> » {{i['title']}}</p>
+						</td>
+					</tr>
+				</table>
+				
+				<p class='date'>&nbsp; {{i['date']}}</p> 
+				
+			</div>           
+		</a>
+	{% endfor %}
+{% endblock %}
