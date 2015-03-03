@@ -14,6 +14,8 @@ import logging
 import random
 app = flask.Flask(__name__)
 
+curr_dir = os.getcwd()
+
 def pretty_date(time=False):
     """
     Get a datetime object or a int() Epoch timestamp and return a
@@ -226,15 +228,15 @@ with open("/home/sauravtom/Samachar_Server/news.txt") as f:
 @app.route('/refresh')
 def refresh():
     
-    with open('/home/sauravtom/Samachar_Server/news.txt','w+') as f:
+    with open('%s/news.txt'%curr_dir,'w+') as f:
         f.write(json.dumps(scrape_news()))
     f.close()
     
-    with open('/home/sauravtom/Samachar_Server/sources_news.txt','w+') as f:
+    with open('%s/sources_news.txt'%curr_dir,'w+') as f:
         f.write(json.dumps(scrape_sources()))
     f.close()
     
-    with open('/home/sauravtom/Samachar_Server/videos.txt','w+') as f:
+    with open('%s/videos.txt'%curr_dir,'w+') as f:
         f.write(json.dumps(scrape_videos()))
     f.close()
     
@@ -248,7 +250,7 @@ def index():
 
 @app.route('/<category>')
 def catpage(category):
-    with open("/home/sauravtom/Samachar_Server/news.txt","rb") as f:
+    with open("%s/news.txt"%curr_dir,"rb") as f:
         news_json = json.loads(f.read())
     #available categories ,w,n,b,e,s
     return flask.render_template('category.html',data=news_json[category])
@@ -260,14 +262,14 @@ def sopage():
 
 @app.route('/sources/<site>')
 def so2page(site):
-    with open("/home/sauravtom/Samachar_Server/sources_news.txt","rb") as f:
+    with open("%s/sources_news.txt"%curr_dir,"rb") as f:
         arr = json.loads(f.read())
 
     return flask.render_template('category.html',data=arr[site])
 
 @app.route('/videos')
 def videos():
-    with open("/home/sauravtom/Samachar_Server/videos.txt","rb") as f:
+    with open("%s/videos.txt"%curr_dir,"rb") as f:
         arr = json.loads(f.read())
     f = []
     for key,value in arr.iteritems():

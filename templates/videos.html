@@ -8,6 +8,18 @@
 		vertical-align: middle;
 		padding: 5px;
 	}
+	#image{
+		width:800px;
+		position:relative;
+	}
+	#watermark{
+		position:absolute;
+		top:40%;
+		left:27%;
+	}
+	#watermark>img{
+		width:60px;
+	}
 </style>
 {% endblock %}
 
@@ -18,7 +30,18 @@
 			<div class='item'>
 				<p class='source'>&nbsp; {{i['author']}}</p>
 				<p class="title">» {{i['title']}}<p>
-				<img src="{{i['image']}}" class='media_img'>
+				<div id="image">
+					<img src="{{i['image']}}" class='media_img'>
+					<div id="watermark">
+						<img src="/static/img/play.png">
+					</div>
+				</div>
+				<!--
+				<iframe class="media" type="text/html" width="640" height="385"
+				  src="{{i['url']}}"
+				  frameborder="0">
+				</iframe>
+				-->
 				<p class='date'>&nbsp; {{i['date']}}</p> 
 			</div>           
 		</a>
