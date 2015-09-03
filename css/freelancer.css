@@ -463,3 +463,11 @@ footer .footer-below {
     display: none;
     opacity: 0;
 }
+
+
+#wrapper { margin: 80px auto; width: 50%; position: relative;
+  font: 600 28px/36px "Trebuchet MS", Helvetica, sans-serif }
+.copy { position: relative; z-index: 2; color:black; font-weight: bolder; }
+.quote { z-index: 1; position: absolute; color: rgb(255, 237, 102); font-size: 220px; line-height:220px; }
+.quote.open { top: -20px; left: -30px; }
+.quote.close { bottom: -120px; right: 0px; }
